@@ -6,9 +6,10 @@ function Square(props) {
       className="square" 
       onClick={props.onClick}
     >
-      {props.position}
-      {" "}
-      {props.value}
+      {/* {props.position}
+      {" "} */}
+      {/* <span className={`${props.color}`}>{props.value}</span> */}
+      <span className={`${props.color}`}></span>
     </button>
   );
 };

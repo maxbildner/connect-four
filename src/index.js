@@ -12,3 +12,18 @@ document.addEventListener('DOMContentLoaded', ()=> {
   // Load root component in place of root element
   ReactDOM.render(<Root/>, root);
 });
+
+
+// TO DO:
+// - alert user who won/draw
+// - Refactor board.js to reduce number of calls to helper function calcWinningLines
+// - Highlight whole column on mouse over
+// - Highlight winning 4 lines
+// - Refactor component to generate board- don't make it manually
+// - AI
+
+
+// FINISHED
+// - Make pieces colors instead of X's or O's
+// - Determine winner
+// - Reset Button

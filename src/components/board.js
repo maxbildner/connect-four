@@ -1,5 +1,7 @@
 import React from 'react';
 import Square from './square';
+import { calculateWinningLine } from '../util';
+
 
 class Board extends React.Component {
   constructor(props) {
@@ -7,7 +9,8 @@ class Board extends React.Component {
 
     this.state = {
       squares: Array(42).fill(null),
-      xIsNext: true,
+      redIsNext: true,
+      winner: null,
     };
     // squares ==
     // [
@@ -18,6 +21,8 @@ class Board extends React.Component {
     //   null, null, null, null, null, null, null,
     //   null, null, null, null, null, null, null,
     // ]
+
+    this.handleReset = this.handleReset.bind(this);
   }
 
 
@@ -28,51 +33,64 @@ class Board extends React.Component {
 
     let positionNextRow = i + 7;
     // positionNextRow = 13 + 7 = 20
-
+ 
+    const winningLine = calculateWinningLine(squares);
+    let winner;
+    (winningLine != null) ? winner = squares[winningLine[0]] : winner = null;
+    
     // Only "drop" item if current value in squares array is null
-    if (squares[i] === null) {
+    if (squares[i] === null && winner == null) {
   
       // Determine where in the squares array we want to "drop" the X/O
       // Keep doing down a row until we hit a piece OR off the board
       while (squares[positionNextRow] === null) {
-        // squares[20] == null        null == null      true
-        // squares[27] == null        null == null      true
-        // squares[34] == null        null == null      true
-        // squares[41] == null        null == null      true
-        // squares[49] == undefined   null == null      true
-
         positionNextRow += 7;
-        // positionNextRow = 27
-        // positionNextRow = 34
-        // positionNextRow = 41
-        // positionNextRow = 49
       }
       
       // Place X or O in squares array
-      squares[positionNextRow - 7] = this.state.xIsNext ? 'X' : 'O';
+      squares[positionNextRow - 7] = this.state.redIsNext ? 'red' : 'blue';
       
       // Changing state -> update board with piece
       this.setState({
         squares: squares,
-        xIsNext: !this.state.xIsNext,
+        redIsNext: !this.state.redIsNext,
       });
     }
+  }
+
+
+  handleReset() {
+    this.setState({
+      squares: Array(42).fill(null),
+      redIsNext: true,
+      winner: null,
+    });
   }
 
 
   renderSquare(i) {
     return (
       <Square 
-        value={this.state.squares[i]}
+        // value={this.state.squares[i]}
         position={i}
-        onClick={() => this.handleClick(i)}
+        color={this.state.squares[i]}
+        onClick={() => this.handleClick(i)}   // !! called method style so this is captured (no need to bind)
       />
-    );
+    ); 
   }
 
 
   render() {
-    const status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+    const { squares, redIsNext } = this.state;
+
+    const winner = calculateWinningLine(squares);
+    let status;
+
+    if (winner) {
+      status = 'Congrats! Winner: ' + squares[winner[0]];
+    } else {
+      status = 'Next player: ' + (redIsNext ? 'red' : 'blue');
+    }
 
     // REFACTOR LATER
     // let col = [0, 1, 2, 3, 4, 5, 6];
@@ -148,6 +166,11 @@ class Board extends React.Component {
           {this.renderSquare(40)}
           {this.renderSquare(41)}
         </div>
+
+        <button 
+          onClick={this.handleReset}
+          className="reset-button"
+        >RESET</button>
       </div>
     );
   }

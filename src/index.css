@@ -41,6 +41,20 @@ ol, ul {
   outline: none;
 }
 
+.red, .blue {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+
+.red {
+  background: red;
+}
+
+.blue {
+  background: blue;
+}
+
 .kbd-navigation .square:focus {
   background: #ddd;
 }
@@ -52,4 +66,8 @@ ol, ul {
 
 .game-info {
   margin-left: 20px;
+}
+
+.reset-button:hover {
+  cursor: pointer;
 }
