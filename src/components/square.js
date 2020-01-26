@@ -6,6 +6,8 @@ function Square(props) {
       className="square" 
       onClick={props.onClick}
     >
+      {props.position}
+      {" "}
       {props.value}
     </button>
   );

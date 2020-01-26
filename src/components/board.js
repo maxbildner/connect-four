@@ -21,24 +21,37 @@ class Board extends React.Component {
   }
 
 
+  // ex. i = 13
   handleClick(i) {
     // Make copy of squares state
     const squares = this.state.squares.slice();
 
     let positionNextRow = i + 7;
+    // positionNextRow = 13 + 7 = 20
 
     // Only "drop" item if current value in squares array is null
     if (squares[i] === null) {
   
       // Determine where in the squares array we want to "drop" the X/O
-      // keep adding + 7 until we reach a val that's not null or off board
-      // check next row (+ 7)
-      // if next row is NOT null, drop counter at i
-      if (positionNextRow != null) {
-        // TO FINISH LATER
-        squares[i] = this.state.xIsNext ? 'X' : 'O';
-      }
+      // Keep doing down a row until we hit a piece OR off the board
+      while (squares[positionNextRow] === null) {
+        // squares[20] == null        null == null      true
+        // squares[27] == null        null == null      true
+        // squares[34] == null        null == null      true
+        // squares[41] == null        null == null      true
+        // squares[49] == undefined   null == null      true
 
+        positionNextRow += 7;
+        // positionNextRow = 27
+        // positionNextRow = 34
+        // positionNextRow = 41
+        // positionNextRow = 49
+      }
+      
+      // Place X or O in squares array
+      squares[positionNextRow - 7] = this.state.xIsNext ? 'X' : 'O';
+      
+      // Changing state -> update board with piece
       this.setState({
         squares: squares,
         xIsNext: !this.state.xIsNext,
@@ -50,8 +63,8 @@ class Board extends React.Component {
   renderSquare(i) {
     return (
       <Square 
-        // value={this.state.squares[i]}
-        value={i}
+        value={this.state.squares[i]}
+        position={i}
         onClick={() => this.handleClick(i)}
       />
     );
