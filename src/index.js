@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
 
 // TO DO:
+// - refactor css for mobile layout
 // - alert user who won/draw
 // - Refactor board.js to reduce number of calls to helper function calcWinningLines
 // - Highlight whole column on mouse over

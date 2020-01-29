@@ -24,8 +24,10 @@ ol, ul {
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
-  height: 100px;
-  width: 100px;
+  /* height: 60px;
+  width: 60px; */
+  height: 3rem;
+  width: 3rem;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
@@ -59,15 +61,13 @@ ol, ul {
   background: #ddd;
 }
 
-.game {
-  display: flex;
-  flex-direction: row;
-}
-
-.game-info {
-  margin-left: 20px;
-}
-
 .reset-button:hover {
   cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .square {
+    height: 100px;
+    width: 100px;
+  }
 }
