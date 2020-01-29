@@ -15,8 +15,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
 
 // TO DO:
-// - refactor css for mobile layout
-// - alert user who won/draw
 // - Refactor board.js to reduce number of calls to helper function calcWinningLines
 // - Highlight whole column on mouse over
 // - Highlight winning 4 lines
@@ -25,6 +23,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
 
 // FINISHED
+// - determine if there is a tie/alert user
+// - refactor css for mobile layout
 // - Make pieces colors instead of X's or O's
 // - Determine winner
 // - Reset Button

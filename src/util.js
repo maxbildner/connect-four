@@ -65,15 +65,16 @@ export const calculateWinningLine = (squares) => {
   let winner;
   for (let i = 0; i < allLines.length; i++) {
     let lines = allLines[i];    // 2D array ex. winningRows
-    // debugger
+
     winner = findWinningLines(lines, squares);
 
     if (winner) {
       return winner;
     }
   }
-  
-  return null;
+
+  // check if there's a draw
+  return (squares.every((value)=> value != null)) ?  ('tie') : null; 
 };
 
 

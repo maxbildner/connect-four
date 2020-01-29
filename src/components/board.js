@@ -86,10 +86,12 @@ class Board extends React.Component {
     const winner = calculateWinningLine(squares);
     let status;
 
-    if (winner) {
-      status = 'Congrats! Winner: ' + squares[winner[0]];
-    } else {
+    if (winner === null) {
       status = 'Next player: ' + (redIsNext ? 'red' : 'blue');
+    } else if (winner === 'tie') {
+      status = "It's a Tie!!";
+    } else {
+      status = 'Congrats! Winner: ' + squares[winner[0]];
     }
 
     // REFACTOR LATER
@@ -113,7 +115,7 @@ class Board extends React.Component {
       <div>
         <div className="status">{status}</div>
 
-        <div className="game-container">
+        <div className="board-container">
           <div className="board-row">
             {this.renderSquare(0)}
             {this.renderSquare(1)}
@@ -168,61 +170,6 @@ class Board extends React.Component {
             {this.renderSquare(40)}
             {this.renderSquare(41)}
           </div>
-
-          {/* <div className="row">
-            <button className="square-button"></button>
-            <button className="square-button"></button>
-            <button className="square-button"></button>
-            <button className="square-button"></button>
-            <button className="square-button"></button>
-            <button className="square-button"></button>
-            <button className="square-button"></button>
-          </div>
-          <div className="row">
-            <button className="square-button"></button>
-            <button className="square-button"></button>
-            <button className="square-button"></button>
-            <button className="square-button"></button>
-            <button className="square-button"></button>
-            <button className="square-button"></button>
-            <button className="square-button"></button>
-          </div>
-          <div className="row">
-            <button className="square-button"></button>
-            <button className="square-button"></button>
-            <button className="square-button"></button>
-            <button className="square-button"></button>
-            <button className="square-button"></button>
-            <button className="square-button"></button>
-            <button className="square-button"></button>
-          </div>
-          <div className="row">
-            <button className="square-button"></button>
-            <button className="square-button"></button>
-            <button className="square-button"></button>
-            <button className="square-button"></button>
-            <button className="square-button"></button>
-            <button className="square-button"></button>
-            <button className="square-button"></button>
-          </div>
-          <div className="row">
-            <button className="square-button"></button>
-            <button className="square-button"></button>
-            <button className="square-button"></button>
-            <button className="square-button"></button>
-            <button className="square-button"></button>
-            <button className="square-button"></button>
-            <button className="square-button"></button>
-          </div>
-          <div className="row-last">
-            <button className="square-button"></button>
-            <button className="square-button"></button>
-            <button className="square-button"></button>
-            <button className="square-button"></button>
-            <button className="square-button"></button>
-            <button className="square-button"></button>
-            <button className="square-button"></button>
-          </div>*/}
         </div> 
 
         <button
