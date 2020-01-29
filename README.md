@@ -1,3 +1,6 @@
+### Live Site: https://maxbildner.github.io/connect-four/
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
